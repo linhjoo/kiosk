@@ -1,0 +1,74 @@
+﻿<Page x:Class="kiosk.pages.Purchase"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:kiosk.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="Purchase">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../resources/images/img_main1.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Border CornerRadius="30" Margin="120,80,120,80" Background="#CC333333">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="9*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0" Margin="40,20,40,20">
+                    <Image DockPanel.Dock="Left" Source="../resources/images/img_hbt_logo_92x20.png" Width="92" Height="20" Opacity="0.5"/>
+                    <Image DockPanel.Dock="Right" Source="../resources/images/ico_cancel.png" Width="60" Height="60" Cursor="Hand" HorizontalAlignment="Right" x:Name="btn_close" MouseDown="Btn_close_MouseDown"/>
+                </DockPanel>
+                <Grid Grid.Row="1" Margin="150">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="10*"></RowDefinition>
+                        <RowDefinition Height="5*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source="../resources/images/qr_store.png"/>
+                    <TextBlock Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                               Margin="165 50" Padding="150"
+                               Background="#04CF5C" Foreground="White"
+                               FontSize="25" FontWeight="Bold">NAVER 스토어 연결</TextBlock>
+                    <Border Grid.Column="1" Background="#20c79f4a" CornerRadius="30" >
+                        <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   FontSize="30" TextAlignment="Center" LineHeight="30" FontFamily="NanumGothic" FontWeight="Bold"
+                                   Foreground="#dadada">
+                            스마트폰으로 QR Code를 스캔하면                             
+                            <LineBreak/>
+                            네이버 스토어로 이동합니다
+                            <LineBreak/>
+                            <LineBreak/>
+                            구매 옵션에 성함을 반드시 입력해주세요.
+                        </TextBlock>
+                    </Border>
+                    <Grid Grid.Column="1" Grid.Row="1" >
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition></ColumnDefinition>
+                            <ColumnDefinition></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+                        <Button x:Name="BtnGoBack" Opacity="1.0" IsEnabled="True" Foreground="#9e6337" Width="320" FontSize="36" FontFamily="NanumGothic" FontWeight="SemiBold" Margin="0 40" Click="BtnGoBack_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="../resources/images/ico_error.png" Width="60" Height="60" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                                <TextBlock Margin="20,0,0,0"  VerticalAlignment="Center"><Run Text="이전화면"/></TextBlock>
+                            </StackPanel>
+                        </Button>
+                        <Button x:Name="BtnGoMain" Grid.Column="1" Opacity="1.0" IsEnabled="True" Foreground="#9e6337" Width="320" FontSize="36" FontFamily="NanumGothic" FontWeight="SemiBold" Margin="0 40" Click="BtnGoMain_Click">
+                            <StackPanel Orientation="Horizontal">
+                                <Image Source="../resources/images/ico_success.png" Width="60" Height="60" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                                <TextBlock Margin="20,0,0,0"  VerticalAlignment="Center"><Run Text="메인화면"/></TextBlock>
+                            </StackPanel>
+                        </Button>
+                    </Grid>
+
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

@@ -1,0 +1,88 @@
+﻿<Page x:Class="kiosk.pages.Main"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:kiosk.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="Main">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../resources/images/img_main1.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="7.5*"></ColumnDefinition>
+                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="0" 
+                  HorizontalAlignment="Stretch"
+                  VerticalAlignment="Stretch"
+                  Margin="20,20,0,20"
+                  Background="#90333333">
+                <MediaElement Name="media_player" 
+                              LoadedBehavior="Manual" 
+                              HorizontalAlignment="Center"
+                              VerticalAlignment="Center"
+                              Stretch="UniformToFill"                              
+                              Margin="20"/>
+            </Grid>
+            <Grid Grid.Column="1" Margin="20" Background="#90333333">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                    <RowDefinition Height="5*"></RowDefinition>
+                    <RowDefinition Height="3*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid Margin="30 5">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Grid.Column="0" Source="../resources/images/img_hbt_logo_92x20.png" ></Image>
+                    <Image Grid.Column="3" Source="../resources/images/ico_cancel.png" Width="50" Height="50" Cursor="Hand" HorizontalAlignment="Right" MouseDown="btn_Cancel_Click"></Image> 
+                </Grid>
+                <TextBlock x:Name="tb_welcome" Grid.Row="1" Background="#20c79f4a" Foreground="#dadada" VerticalAlignment="Center"
+                               Padding="0,30,0,30" FontFamily="NanumGothic" FontSize="20" TextWrapping="Wrap" TextAlignment="Center" Margin="20" LineHeight="30" />
+
+                <StackPanel Grid.Row="2">
+                    <Button x:Name="BtnFootScan"  Foreground="#9e6337" FontSize="24" FontFamily="NanumGothic" FontWeight="SemiBold" 
+                            BorderThickness="0" Margin="20,10,20,0" Click="btn_3DScan_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../resources/images/ico_3d.png" Width="45" Height="45" Margin="20,0,0,0"/>
+                            <TextBlock Margin="20,0,0,0"  VerticalAlignment="Center" Text="족부 스캔"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="BtnLogIn" Foreground="#9e6337" FontSize="24" FontFamily="NanumGothic" FontWeight="SemiBold" 
+                            BorderThickness="0" Margin="20,10,20,0" Click="BtnLogIn_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../resources/images/ico_login.png" Width="45" Height="45" Margin="20,0,0,0"/>
+                            <TextBlock Margin="20,0,0,0"  VerticalAlignment="Center" Text="로그인"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="BtnLogOut" Foreground="#9e6337" FontSize="24" FontFamily="NanumGothic" FontWeight="SemiBold" 
+                            BorderThickness="0" Margin="20,10,20,0" Click="BtnLogOut_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../resources/images/ico_signout.png" Width="45" Height="45" Margin="20,0,0,0"/>
+                            <TextBlock Margin="20,0,0,0"  VerticalAlignment="Center" Text="로그아웃"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button x:Name="BtnJoin" Foreground="#9e6337" FontSize="24" FontFamily="NanumGothic" FontWeight="SemiBold" 
+                            BorderThickness="0" Margin="20,10,20,0" Click="BtnJoin_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <Image Source="../resources/images/ico_signup.png" Width="45" Height="45" Margin="20,0,0,0"/>
+                            <TextBlock Margin="20,0,0,0"  VerticalAlignment="Center" Text="회원가입"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </Grid>
+
+        </Grid>
+
+
+    </Grid>
+</Page>

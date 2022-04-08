@@ -1,0 +1,97 @@
+﻿<Page x:Class="kiosk.pages.Join"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:kiosk.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="Join">
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../resources/images/img_main1.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+        
+
+        <Border CornerRadius="30" Margin="120,80,120,80" Background="#CC333333">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="9*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0" Margin="40,20,40,20">
+                    <Image DockPanel.Dock="Left" Source="../resources/images/img_hbt_logo_92x20.png" Width="92" Height="20" Opacity="0.5"/>
+                    <Image DockPanel.Dock="Right" Source="../resources/images/ico_cancel.png" Width="60" Height="60" Cursor="Hand" HorizontalAlignment="Right" x:Name="btn_close" MouseDown="Btn_close_MouseDown"/>
+                </DockPanel>
+                <Grid Grid.Row="1">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="30">
+                        <TextBlock Foreground="#dadada" 
+				       Padding="30" FontFamily="NanumGothic" FontSize="40" TextWrapping="Wrap" TextAlignment="Center" LineHeight="50">
+                            <Span FontWeight="Bold" Foreground="BurlyWood"><Run Text="회원등록"/></Span>
+                        </TextBlock>
+                    </StackPanel>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="10*"></RowDefinition>
+                            <RowDefinition Height="2*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Grid Margin="20" Background="#CC333333">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="3*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Label Grid.Row="1" Grid.Column="0" Content="이메일" Foreground="White" FontSize="34" FontFamily="NanumGothic" HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1" x:Name="tb_email" Width="400" Grid.Row="1" Margin="5" Text="" FontSize="30" VerticalContentAlignment="Center" FontFamily="NanumGothic" HorizontalAlignment="Left" Height="45" Padding="10,0,10,0" Background="#777777" BorderThickness="0"/>
+                            
+                            <Label Grid.Row="2" Grid.Column="0" Content="비밀번호" Foreground="White" FontSize="34" FontFamily="NanumGothic" HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center"/>
+                            <PasswordBox Grid.Column="1" x:Name="tb_pw" Width="400" Grid.Row="2" Password=""  Margin="5" FontSize="30" VerticalContentAlignment="Center" FontFamily="NanumGothic" HorizontalAlignment="Left" Height="45" Padding="10,0,10,0" Background="#777777" BorderThickness="0"/>
+
+                            <Label Grid.Row="3" Grid.Column="0" Content="비밀번호확인" Foreground="White" FontSize="34" FontFamily="NanumGothic" HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center"/>
+                            <PasswordBox Grid.Column="1" x:Name="tb_pw2" Width="400" Grid.Row="3" Password=""  Margin="5" FontSize="30" VerticalContentAlignment="Center" FontFamily="NanumGothic" HorizontalAlignment="Left" Height="45" Padding="10,0,10,0" Background="#777777" BorderThickness="0"/>
+
+                            <Label Grid.Row="4" Grid.Column="0" Content="이름" Foreground="White" FontSize="34" FontFamily="NanumGothic" HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1" x:Name="tb_name" Width="200" Grid.Row="4" Margin="5" Text="" FontSize="30" VerticalContentAlignment="Center" FontFamily="NanumGothic" HorizontalAlignment="Left" Height="45" Padding="10,0,10,0" Background="#777777" BorderThickness="0"/>
+
+                            <Label Grid.Row="5" Grid.Column="0" Content="휴대폰번호" Foreground="White" FontSize="34" FontFamily="NanumGothic" HorizontalAlignment="Right" Margin="0,0,20,0" VerticalAlignment="Center"/>
+                            <TextBox Grid.Column="1" x:Name="tb_phonenumber" Width="400" Grid.Row="5" Margin="5" Text="" FontSize="30" VerticalContentAlignment="Center" FontFamily="NanumGothic" HorizontalAlignment="Left" Height="45" Padding="10,0,10,0" Background="#777777" BorderThickness="0"/>
+
+                            <TextBlock x:Name="tb_Error" Grid.Row="7" Grid.ColumnSpan="2" Margin="25 0" VerticalAlignment="Center"
+                                       FontFamily="NanumGothic" FontSize="34" Opacity="0.7" Foreground="Red" />
+                        </Grid>
+                        <StackPanel Grid.Row="1" Orientation="Horizontal" VerticalAlignment="Center" HorizontalAlignment="Center">
+                            <Button x:Name="BtnConfirm" Foreground="#9e6337" FontSize="34" FontFamily="NanumGothic" FontWeight="SemiBold" BorderThickness="0" Width="270" Click="BtnConfirm_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="../resources/images/ico_signup.png" Width="52" Height="52" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                                    <TextBlock Margin="20,0,0,0"  VerticalAlignment="Center"><Run Text="회원가입"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <!-- Button: Cancel -->
+                            <Button x:Name="BtnCancel" Foreground="White" FontSize="34" FontFamily="NanumGothic" FontWeight="SemiBold" BorderThickness="0" Margin="20,0,0,0"  Width="220" Click="BtnCancel_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="../resources/images/ico_cancel.png" Width="52" Height="52" Margin="10,0,0,0" VerticalAlignment="Center"/>
+                                    <TextBlock Margin="20,0,0,0"  VerticalAlignment="Center"><Run Text="취소"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>

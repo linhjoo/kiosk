@@ -1,0 +1,340 @@
+﻿<Page x:Class="kiosk.pages.Disease"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:h="clr-namespace:HelixToolkit.Wpf;assembly=HelixToolkit.Wpf"
+      xmlns:local="clr-namespace:kiosk.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="Disease">
+
+    <Page.Background>
+        <ImageBrush ImageSource="../resources/images/img_main1.jpg" Stretch="UniformToFill"/>
+    </Page.Background>
+
+    <!-- Main Grid -->
+    <Border CornerRadius="30" Margin="120,80,120,80" Background="#CC333333">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="1*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="1*"></RowDefinition>
+                <RowDefinition Height="9*"></RowDefinition>
+            </Grid.RowDefinitions>
+
+            <!-- 타이틀 영역 -->
+            <StackPanel Orientation="Horizontal" Margin="40 0"
+                    Grid.Row="0" Grid.Column="0">
+                <Image DockPanel.Dock="Left" 
+                   Source="../resources/images/img_hbt_logo_92x20.png" 
+                   Width="92" Height="20" Opacity="0.5"/>
+                <TextBlock Margin="20 0 0 0 " Foreground="#dadada"
+                       VerticalAlignment="Center"
+				       FontFamily="NanumGothic" 
+                       FontSize="40" TextWrapping="Wrap" 
+                       TextAlignment="Center" LineHeight="50">
+				            <Span FontWeight="Bold">3D Insole 생성 결과</Span> 
+                            <Span FontWeight="Bold" Foreground="BurlyWood">
+                            </Span>
+                </TextBlock>
+            </StackPanel>
+
+            <!-- 종료버튼영역 -->
+            <Image x:Name="Cancel" Grid.Column="1" Margin="40 0"
+            Source="../resources/images/ico_cancel.png"
+            Width="60" Height="60" Cursor="Hand" 
+            HorizontalAlignment="Right" 
+            MouseDown="Cancel_MouseDown"/>
+
+            <!-- 좌측 3D View 영역 -->
+            <Grid Grid.Row="1" Background="#333333" Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition></ColumnDefinition>
+                    <ColumnDefinition></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="10*"></RowDefinition>
+                    <RowDefinition Height="2*"></RowDefinition>
+                </Grid.RowDefinitions>
+
+                <!-- Insole 3D Viewer -->
+                <h:HelixViewport3D  x:Name="viewer_left" Grid.Row="0" Grid.Column="0"
+                                                        ZoomExtentsWhenLoaded="True" ShowFrameRate="False" ShowCoordinateSystem="False" ShowCameraInfo="False" 
+                                                        ShowTriangleCountInfo="False" ShowCameraTarget="False" ShowFieldOfView="False" 
+                                                        ShowViewCube="False" CameraRotationMode="Turntable" IsPanEnabled="False" IsChangeFieldOfViewEnabled="False"  
+                                                        IsInertiaEnabled="False" IsMoveEnabled="False">
+                    <h:HelixViewport3D.DefaultCamera>
+                        <PerspectiveCamera Position="0,-10,0" LookDirection="0,10,-100" UpDirection="0,0,-1" FieldOfView="61" NearPlaneDistance="0.001"/>
+                    </h:HelixViewport3D.DefaultCamera>
+                    <h:HelixViewport3D.RotateGesture>
+                        <MouseGesture MouseAction="LeftClick"/>
+                    </h:HelixViewport3D.RotateGesture>
+                    <h:SunLight/>
+                    <h:PointsVisual3D x:Name="model1" />
+                </h:HelixViewport3D>
+                <h:HelixViewport3D  x:Name="viewer_right" Grid.Row="0" Grid.Column="1"
+                                                        ZoomExtentsWhenLoaded="True" ShowFrameRate="False" ShowCoordinateSystem="False" ShowCameraInfo="False" 
+                                                        ShowTriangleCountInfo="False" ShowCameraTarget="False" ShowFieldOfView="False" 
+                                                        ShowViewCube="False" CameraRotationMode="Turntable" IsPanEnabled="False" IsChangeFieldOfViewEnabled="False"  
+                                                        IsInertiaEnabled="False" IsMoveEnabled="False">
+                    <h:HelixViewport3D.DefaultCamera>
+                        <PerspectiveCamera Position="0,-10,0" LookDirection="0,10,-100" UpDirection="0,0,-1" FieldOfView="61" NearPlaneDistance="0.001"/>
+                    </h:HelixViewport3D.DefaultCamera>
+                    <h:HelixViewport3D.RotateGesture>
+                        <MouseGesture MouseAction="LeftClick"/>
+                    </h:HelixViewport3D.RotateGesture>
+                    <h:SunLight/>
+                    <h:PointsVisual3D x:Name="model2" />
+                </h:HelixViewport3D>
+
+                <Grid Grid.Row="1" Grid.Column="0"  Background="#A0c79f4a" Margin="15">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="37" FontWeight="Bold" 
+                           Foreground="#dadada" Text="왼발" />
+                </Grid>
+                <Grid Grid.Row="1" Grid.Column="1" Background="#A0c79f4a" Margin="15">
+                    <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="37" FontWeight="Bold" 
+                           Foreground="#dadada" Text="오른발" />
+                </Grid>
+            </Grid>
+
+            <!-- 우측 정보 영역 -->
+            <Grid Grid.Row="1" Grid.Column="1">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="7.5*"></RowDefinition>
+                        <RowDefinition Height="2.5*"></RowDefinition>
+                    </Grid.RowDefinitions>
+                    <!-- 수치 영역 -->
+                    <Grid Grid.Row="0" Visibility="Visible">
+                        <Grid Margin="20 20 20 20">
+                            <Grid.RowDefinitions>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
+                            </Grid.RowDefinitions>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                                <ColumnDefinition Width="1*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Row="0" Grid.Column="1" Margin="3"
+                                    Background="#A0c79f4a">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="왼발" />
+                            </Grid>
+
+                            <Grid Grid.Row="0" Grid.Column="2" Margin="3"
+                                    Background="#A0c79f4a">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="오른발" />
+                            </Grid>
+
+                            <Grid Grid.Row="1" Grid.Column="0" Margin="3"
+                                    Background="#A0c79f4a">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="발 길이" />
+                            </Grid>
+
+                            <Grid Grid.Row="2" Grid.Column="0" Margin="3"
+                                    Background="#A0c79f4a">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="발 너비" />
+                            </Grid>
+
+
+                            <Grid Grid.Row="1" Grid.Column="1" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="FootLengthL" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <Grid Grid.Row="1" Grid.Column="2" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="FootLengthR" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <Grid Grid.Row="2" Grid.Column="1" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="FootWidthL" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <Grid Grid.Row="2" Grid.Column="2" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="FootWidthR" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <Grid Grid.Row="4" Grid.ColumnSpan="3" Margin="3"
+                                    Background="#A0c79f4a">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="진단결과" />
+                            </Grid>
+
+                            <!-- 좌우균형-->
+                            <Grid Grid.Row="5" Grid.Column="0" Margin="3"
+                                    Background="#A0c79f4a">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="좌우 균형" />
+                            </Grid>
+
+                            <Grid Grid.Row="5" Grid.Column="1" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="FootBalanceL" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <Grid Grid.Row="5" Grid.Column="2" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="FootBalanceR" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <!-- 전족부 압력-->
+                            <Grid Grid.Row="6" Grid.Column="0" Margin="3"
+                                    Background="#A0c79f4a">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="전족부 압력" />
+                            </Grid>
+
+                            <Grid Grid.Row="6" Grid.Column="1" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="FootForePressL" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <Grid Grid.Row="6" Grid.Column="2" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="FootForePressR" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <!-- 중족부 압력-->
+                            <Grid Grid.Row="7" Grid.Column="0" Margin="3"
+                                    Background="#A0c79f4a">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="중족부 압력" />
+                            </Grid>
+
+                            <Grid Grid.Row="7" Grid.Column="1" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="FootMiddlePressL" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <Grid Grid.Row="7" Grid.Column="2" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="FootMiddlePressR" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <!-- 후족부 압력-->
+                            <Grid Grid.Row="8" Grid.Column="0" Margin="3"
+                                    Background="#A0c79f4a">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="후족부 압력" />
+                            </Grid>
+
+                            <Grid Grid.Row="8" Grid.Column="1" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="FootBackPressL" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <Grid Grid.Row="8" Grid.Column="2" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="FootBackPressR" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <!-- 평발 여부-->
+                            <Grid Grid.Row="9" Grid.Column="0" Margin="3"
+                                    Background="#A0c79f4a">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="평발 여부" />
+                            </Grid>
+
+                            <Grid Grid.Row="9" Grid.Column="1" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="FootFlatL" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <Grid Grid.Row="9" Grid.Column="2" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="FootFlatR" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <Grid Grid.Row="10" Grid.ColumnSpan="3" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="20" FontWeight="Bold" 
+                           Foreground="#dadada" Text="결과에 따라 가까운 병원에서의 진료를 권합니다." />
+                            </Grid>
+
+
+                        </Grid>
+                    </Grid>
+                    <!-- 버튼 영역-->
+                    <Grid Grid.Row="1">
+                        <StackPanel Margin="10 10">
+
+                            <Button x:Name="Confirm" Foreground="#9e6337" Width="350" Height="75" FontSize="32" FontFamily="NanumGothic" FontWeight="SemiBold" Margin="10" Click="Confirm_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="../resources/images/ico_shoes.png" Width="50" Height="50" Margin="20 0" VerticalAlignment="Center"/>
+                                    <TextBlock Margin="10,0,0,0"  VerticalAlignment="Center"><Run Text="확인" FontSize="30"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+                            <Button x:Name="Rescan" Foreground="#9e6337" Width="350" Height="75" FontSize="32" FontFamily="NanumGothic" FontWeight="SemiBold" Margin="10" Click="Rescan_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="../resources/images/ico_error.png" Width="35" Height="35" Margin="28 0"/>
+                                    <TextBlock Margin="10,0,0,0"  VerticalAlignment="Center"><Run Text="이전" FontSize="30"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Grid>
+    </Border>
+</Page>

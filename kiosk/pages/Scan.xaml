@@ -1,0 +1,119 @@
+﻿<Page x:Class="kiosk.pages.Scan"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:kiosk.pages"
+      mc:Ignorable="d" 
+      d:DesignHeight="1080" d:DesignWidth="1920"
+      Title="Scan"
+      Loaded="Page_Loaded"
+      Unloaded="Page_Unloaded"
+      >
+
+    <Grid>
+        <Grid.Background>
+            <ImageBrush ImageSource="../resources/images/img_main1.jpg" Stretch="UniformToFill"/>
+        </Grid.Background>
+
+        <Border CornerRadius="30" Margin="120,80,120,80" Background="#CC333333">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="1*"></RowDefinition>
+                    <RowDefinition Height="9*"></RowDefinition>
+                </Grid.RowDefinitions>
+                <DockPanel Grid.Row="0" Margin="40,20,40,20">
+                    <Image DockPanel.Dock="Left" Source="../resources/images/img_hbt_logo_92x20.png" Width="92" Height="20" Opacity="0.5"/>
+                    <Image DockPanel.Dock="Right" Source="../resources/images/ico_cancel.png" Width="60" Height="60" Cursor="Hand" HorizontalAlignment="Right" x:Name="btn_close" MouseDown="Btn_close_MouseDown"/>
+                </DockPanel>
+                <Grid Grid.Row="1" Margin="50">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="8*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0" Margin="30">
+                        <TextBlock Foreground="#dadada" 
+				       Padding="30" FontFamily="NanumGothic" FontSize="40" TextWrapping="Wrap" TextAlignment="Center" LineHeight="50">
+				            <Span FontWeight="Bold">3D SCAN</Span><LineBreak/>
+                            <Span FontWeight="Bold" Foreground="BurlyWood"><Run Text="순서안내"/></Span>
+                        </TextBlock>
+                        <Image x:Name="VideoViewer" Height="180"></Image>
+                    </StackPanel>
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="2.5*"></RowDefinition>
+                            <RowDefinition Height="5*"></RowDefinition>
+                            <RowDefinition Height="2.5*"></RowDefinition>
+                        </Grid.RowDefinitions>
+                        <Border HorizontalAlignment="Center" VerticalAlignment="Center"
+                            Padding="100,25,100,25" 
+                            CornerRadius="30" 
+                            Background="#20c79f4a">
+                            <TextBlock Foreground="#dadada" FontFamily="NanumGothic" FontSize="32" FontWeight="Bold" TextWrapping="Wrap" TextAlignment="Center" LineHeight="45">
+                                <Run Text="양 발을 발판의 중심에 어깨너비 간격으로 배치해주세요.&#10;스캔은 총 3분이 소요됩니다."/>
+                            </TextBlock>
+                        </Border>
+                        <!--
+                        <Image Grid.Row="1"  Source="../resources/images/img_foot_scan.jpg" Margin="30"/>
+                        -->
+                        <Border Background="#20c79f4a"  Grid.Row="1" Margin="200 50" CornerRadius="50">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <Grid Margin="45">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"></RowDefinition>
+                                        <RowDefinition Height="2*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           FontFamily="NanumGothic" FontSize="45" Foreground="#dadada" FontWeight="Bold">
+                                상태</TextBlock>
+                                    <TextBlock x:Name="tb_status" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           FontFamily="NanumGothic" FontSize="60" Foreground="LimeGreen" FontWeight="Bold">
+                                READY</TextBlock>
+                                </Grid>
+                                <Grid Margin="45" Grid.Column="1">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="1*"></RowDefinition>
+                                        <RowDefinition Height="2*"></RowDefinition>
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           FontFamily="NanumGothic" FontSize="45" Foreground="#dadada" FontWeight="Bold">
+                                진행도</TextBlock>
+                                    <TextBlock x:Name="tb_progress" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Center"
+                                           FontFamily="NanumGothic" FontSize="70" Foreground="BurlyWood" FontWeight="Bold">
+                                0%</TextBlock>
+                                </Grid>
+                            </Grid>
+                        </Border>
+                        <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,70,0,0">
+
+                            <Button x:Name="btn_Reset_Scan" Opacity="1" IsEnabled="False" Foreground="White" Width="320" FontSize="36" FontFamily="NanumGothic" FontWeight="SemiBold" Margin="20,0,0,0" Click="Btn_Reset_Scan_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="../resources/images/ico_3d.png" Width="60" Height="60" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                                    <TextBlock Margin="20,0,0,0"  VerticalAlignment="Center"><Run x:Name="tb_scanStart" Text="스캔시작"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button x:Name="btn_See_Result" IsEnabled="False" Foreground="#9e6337" Width="320" FontSize="36" FontFamily="NanumGothic" FontWeight="SemiBold" Margin="20,0,0,0" Click="Btn_See_Result_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="../resources/images/ico_info.png" Width="60" Height="60" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                                    <TextBlock Margin="20,0,0,0"  VerticalAlignment="Center"><Run Text="스캔결과"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+
+                            <Button x:Name="btn_Back" Opacity="1.0" IsEnabled="True" Foreground="#9e6337" Width="320" FontSize="36" FontFamily="NanumGothic" FontWeight="SemiBold" Margin="20,0,0,0" Click="Btn_Back_Click">
+                                <StackPanel Orientation="Horizontal">
+                                    <Image Source="../resources/images/ico_shoes.png" Width="60" Height="60" Margin="20,0,0,0" VerticalAlignment="Center"/>
+                                    <TextBlock Margin="20,0,0,0"  VerticalAlignment="Center"><Run Text="이전메뉴"/></TextBlock>
+                                </StackPanel>
+                            </Button>
+                        </StackPanel>
+                    </Grid>
+                </Grid>
+            </Grid>
+        </Border>
+    </Grid>
+</Page>
