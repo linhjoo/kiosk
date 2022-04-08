@@ -8,6 +8,6 @@
         Title="MainWindow" Height="1080" Width="1920"
         WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None" Closed="Window_Closed">
     <Grid>
-        <Frame NavigationUIVisibility="Hidden" Source="/pages/ScanResult.xaml"/>
+        <Frame NavigationUIVisibility="Hidden" Source="/pages/Main.xaml"/>
     </Grid>
 </Window>

@@ -38,8 +38,7 @@ namespace kiosk.pages
 
             ModelImporter importer1 = new ModelImporter();
             ModelImporter importer2 = new ModelImporter();
-            //System.Windows.Media.Media3D.Model3DGroup m3DGroup1 = importer1.Load(@"C:\HBT_Foot_Scanner\Result\L_foot_mesh.ply");
-            System.Windows.Media.Media3D.Model3DGroup m3DGroup1 = importer1.Load(@"C:\HBT_Foot_Scanner\Data\insole_sample\180_L.ply");
+            System.Windows.Media.Media3D.Model3DGroup m3DGroup1 = importer1.Load(@"C:\HBT_Foot_Scanner\Result\L_foot_mesh.ply");
             System.Windows.Media.Media3D.Model3DGroup m3DGroup2 = importer1.Load(@"C:\HBT_Foot_Scanner\Result\R_foot_mesh.ply");
 
             model1.Content = m3DGroup1;

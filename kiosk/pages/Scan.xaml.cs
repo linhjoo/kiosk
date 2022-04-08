@@ -59,7 +59,10 @@ namespace kiosk.pages
         {
             worker.CancelAsync();
 
-            capture.Dispose();
+            if (!capture.IsDisposed)
+            {
+                capture.Dispose();
+            }
         }
 
         private void Btn_Back_Click(object sender, RoutedEventArgs e)
@@ -72,6 +75,11 @@ namespace kiosk.pages
         {
             EnableButton((Button)sender, false);
 
+            if (!capture.IsDisposed)
+            {
+                capture.Dispose();
+            }
+
             try
             {
                 ProcessStart(@"C:\HBT_Foot_Scanner\Foot_Scan\HBT_Foot_Scanning.vbs");
@@ -81,7 +89,6 @@ namespace kiosk.pages
             catch
             {
                 Console.WriteLine("실행파일이 없습니다");
-
             }
         }
 

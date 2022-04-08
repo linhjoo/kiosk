@@ -25,17 +25,43 @@ namespace kiosk.pages
     public enum FOOT_SIDES { LEFT, RIGHT };
     public partial class Disease : Page
     {
+        double gFootLengthL, gFootLengthR;
+
         public Disease()
         {
             InitializeComponent();
 
             LoadResultData();
+            SetInsole3DModel();
+        }
 
-            GetMeshFromPly(FOOT_SIDES.LEFT, @"C:\HBT_Foot_Scanner\Result\Demo_Left.ply");
-            GetMeshFromPly(FOOT_SIDES.RIGHT, @"C:\HBT_Foot_Scanner\Result\Demo_Right.ply");
+        private void SetInsole3DModel()
+        {
+            int footLengthL, footLengthR;
 
-            // C:\HBT_Foot_Scanner\Data\insole_sample\180_L.ply
+            ModelImporter importer1 = new ModelImporter();
+            ModelImporter importer2 = new ModelImporter();
 
+            footLengthL = (int) IntRound(gFootLengthL * 2, -1) / 2;
+            footLengthR = (int) IntRound(gFootLengthR * 2, -1) / 2;
+
+            if (footLengthL < 180) footLengthL = 180;
+            else if (footLengthL > 290) footLengthL = 290;
+
+            if (footLengthR < 180) footLengthR = 180;
+            else if (footLengthR > 290) footLengthR = 290;
+
+            System.Windows.Media.Media3D.Model3DGroup m3DGroup1 = importer1.Load($"C:/HBT_Foot_Scanner/Data/insole_sample/{footLengthL}_L.ply");
+            System.Windows.Media.Media3D.Model3DGroup m3DGroup2 = importer1.Load($"C:/HBT_Foot_Scanner/Data/insole_sample/{footLengthR}_R.ply");
+
+            model1.Content = m3DGroup1;
+            model2.Content = m3DGroup2;
+        }
+
+        public double IntRound(double Value, int Digit)
+        {
+            double Temp = Math.Pow(10.0, Digit);
+            return Math.Round(Value * Temp) / Temp;
         }
 
         private void LoadResultData()
@@ -48,12 +74,16 @@ namespace kiosk.pages
             double footLengthR = double.Parse(ini["FOOT_SIZE"]["R_foot length"].ToString().Replace(" mm", ""));
             double footWidthR = double.Parse(ini["FOOT_SIZE"]["R_foot width"].ToString().Replace(" mm", ""));
 
+            gFootLengthL = footLengthL;
+            gFootLengthR = footLengthR;
+
             FootLengthL.Text = string.Format("{0:0.0}mm", footLengthL);
             FootWidthL.Text = string.Format("{0:0.0}mm", footWidthL);
             FootLengthR.Text = string.Format("{0:0.0}mm", footLengthR);
             FootWidthR.Text = string.Format("{0:0.0}mm", footWidthR);
         }
 
+        /*
         private void GetMeshFromPly(FOOT_SIDES foot_side, string _path_model)
         {
             if (File.Exists(_path_model))
@@ -100,6 +130,7 @@ namespace kiosk.pages
             }
             return geometry;
         }
+        */
 
         private void Cancel_MouseDown(object sender, MouseButtonEventArgs e)
         {
