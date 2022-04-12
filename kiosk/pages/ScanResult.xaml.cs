@@ -36,6 +36,14 @@ namespace kiosk.pages
 
             LoadResultData();
 
+            Init3DViewer();
+            Init2DViewer();
+
+            SetViewerVisiblity(ViewMode.VIEWMODE_3D);
+        }
+
+        private void Init3DViewer()
+        {
             ModelImporter importer1 = new ModelImporter();
             ModelImporter importer2 = new ModelImporter();
             System.Windows.Media.Media3D.Model3DGroup m3DGroup1 = importer1.Load(@"C:\HBT_Foot_Scanner\Result\L_foot_mesh.ply");
@@ -43,7 +51,10 @@ namespace kiosk.pages
 
             model1.Content = m3DGroup1;
             model2.Content = m3DGroup2;
+        }
 
+        private void Init2DViewer()
+        {
             var bitmapL = new BitmapImage();
             var stream = File.OpenRead(@"C:\HBT_Foot_Scanner\Result\Result_RGB_L_foot.png");
 
@@ -68,9 +79,6 @@ namespace kiosk.pages
 
             FootViewerImgL.Source = bitmapL;
             FootViewerImgR.Source = bitmapR;
-
-
-            SetViewerVisiblity(ViewMode.VIEWMODE_3D);
         }
 
 

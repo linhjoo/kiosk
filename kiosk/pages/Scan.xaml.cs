@@ -125,7 +125,7 @@ namespace kiosk.pages
                 }
                 catch
                 {
-                    Console.WriteLine("예외발생");
+                    Console.WriteLine("예외 발생");
                 }
 
                 Thread.Sleep(100);
@@ -244,7 +244,14 @@ namespace kiosk.pages
             {
                 if (process.ProcessName.StartsWith(fileName))
                 {
-                    process.Kill();
+                    try
+                    {
+                        process.Kill();
+                    }
+                    catch
+                    {
+                        Console.WriteLine("프로세스 종료 실패");
+                    }
                 }
             }
         }
