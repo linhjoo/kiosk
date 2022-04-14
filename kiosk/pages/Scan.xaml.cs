@@ -47,6 +47,7 @@ namespace kiosk.pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
+            // 페이지 Load 시 카메라 캡쳐 비동기 실행
             capture.Open(0, VideoCaptureAPIs.ANY);
             if (!capture.IsOpened())
             {
@@ -57,6 +58,7 @@ namespace kiosk.pages
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
+            // 페이지 Unload 시 카메라 캡쳐 종료
             worker.CancelAsync();
 
             if (!capture.IsDisposed)
@@ -73,13 +75,15 @@ namespace kiosk.pages
 
         private void Btn_Reset_Scan_Click(object sender, RoutedEventArgs e)
         {
-            EnableButton((Button)sender, false);
+           EnableButton((Button)sender, false);
 
+            // 스캔 시작 시 카메라 연결 해제
             if (!capture.IsDisposed)
             {
                 capture.Dispose();
             }
 
+            // 스캔 프로그램 시작
             try
             {
                 ProcessStart(@"C:\HBT_Foot_Scanner\Foot_Scan\HBT_Foot_Scanning.vbs");
@@ -105,12 +109,14 @@ namespace kiosk.pages
             NavigationService.Navigate(new Uri("pages/ScanResult.xaml", UriKind.Relative));
         }
 
+        // 비동기 프로세스 생성
         private async void RunTask()
         {
             var task = Task.Run(() => Run_Camera());
             await task;
         }
 
+        // 카메라 캡쳐 및 Display
         private bool Run_Camera()
         {
             while (true)
@@ -120,6 +126,8 @@ namespace kiosk.pages
                     using (var frameMat = capture.RetrieveMat())
                     {
                         var frameBitmap = BitmapConverter.ToBitmap(frameMat);
+                        
+                        // UI 쓰레드 접근을 위한 Invoke
                         Dispatcher.Invoke(DispatcherPriority.Normal, new Action(delegate { VideoViewer.Source = ConvertBmpToImageSource(frameBitmap); }));
                     }
                 }
@@ -132,6 +140,7 @@ namespace kiosk.pages
             }
         }
 
+        // 스캔 진행상황 및 결과를 실시간으로 불러오고 표시해주기 위한 Background Worker Initialize
         public void InitWorkerThread()
         {
             worker = new BackgroundWorker();
@@ -143,6 +152,7 @@ namespace kiosk.pages
             worker.RunWorkerCompleted += new RunWorkerCompletedEventHandler(worker_RunWorkerCompleted);//작업이 완료되었을 때 실행할 콜백메서드 정의
         }
 
+        // 검사 진행상황을 ini 파일에서 실시간으로 불러옴
         private void worker_DoWork(object sender, DoWorkEventArgs e)
         {
             IniFile ini = new IniFile();
@@ -220,6 +230,7 @@ namespace kiosk.pages
             tb_progress.Text = percent + "%";
         }
 
+        // BitmapImage를 Image Source로 변환
         public BitmapImage ConvertBmpToImageSource(Bitmap src)
         {
             MemoryStream ms = new MemoryStream();
@@ -232,6 +243,7 @@ namespace kiosk.pages
             return image;
         }
 
+        // 외부 프로세스 시작 (exe, vbs .. UI 실행파일과 같은 경로 내에 있어야 함)
         private void ProcessStart(string fileName)
         {
             ProcessStartInfo startInfo = new ProcessStartInfo(fileName);

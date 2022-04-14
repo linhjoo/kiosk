@@ -30,7 +30,6 @@ namespace kiosk.pages
         public Disease()
         {
             InitializeComponent();
-
             LoadResultData();
             SetInsole3DModel();
         }
@@ -39,36 +38,39 @@ namespace kiosk.pages
         {
             int footLengthL, footLengthR;
 
-            ModelImporter importer1 = new ModelImporter();
-            ModelImporter importer2 = new ModelImporter();
+            // 인솔 사이즈 최소 단위인 5 단위 반올림을 위해 *2, 반올림 후 /2
+            footLengthL = (int)IntRound(gFootLengthL * 2, -1) / 2;
+            footLengthR = (int)IntRound(gFootLengthR * 2, -1) / 2;
 
-            footLengthL = (int) IntRound(gFootLengthL * 2, -1) / 2;
-            footLengthR = (int) IntRound(gFootLengthR * 2, -1) / 2;
-
+            // 에러 방지를 위한 최대 최소 사이즈 지정
             if (footLengthL < 180) footLengthL = 180;
             else if (footLengthL > 290) footLengthL = 290;
 
             if (footLengthR < 180) footLengthR = 180;
             else if (footLengthR > 290) footLengthR = 290;
 
+            ModelImporter importer1 = new ModelImporter();
+            ModelImporter importer2 = new ModelImporter();
             System.Windows.Media.Media3D.Model3DGroup m3DGroup1 = importer1.Load($"C:/HBT_Foot_Scanner/Data/insole_sample/{footLengthL}_L.ply");
             System.Windows.Media.Media3D.Model3DGroup m3DGroup2 = importer1.Load($"C:/HBT_Foot_Scanner/Data/insole_sample/{footLengthR}_R.ply");
-
             model1.Content = m3DGroup1;
             model2.Content = m3DGroup2;
         }
 
+        // 1의 자리 반올림
         public double IntRound(double Value, int Digit)
         {
             double Temp = Math.Pow(10.0, Digit);
             return Math.Round(Value * Temp) / Temp;
         }
 
+        // 사이즈 측정 결과 불러오기
         private void LoadResultData()
         {
             IniFile ini = new IniFile();
             ini.Load(@"C:\HBT_Foot_Scanner\Result\measurements.ini");
 
+            //ini 파일에서 수치를 불러와 " mm" 문자 제거 후 double로 캐스팅
             double footLengthL = double.Parse(ini["FOOT_SIZE"]["L_foot length"].ToString().Replace(" mm", ""));
             double footWidthL = double.Parse(ini["FOOT_SIZE"]["L_foot width"].ToString().Replace(" mm", ""));
             double footLengthR = double.Parse(ini["FOOT_SIZE"]["R_foot length"].ToString().Replace(" mm", ""));
@@ -83,7 +85,9 @@ namespace kiosk.pages
             FootWidthR.Text = string.Format("{0:0.0}mm", footWidthR);
         }
 
+
         /*
+        // 도트 데이터를 뷰어에 표시할 경우 사용
         private void GetMeshFromPly(FOOT_SIDES foot_side, string _path_model)
         {
             if (File.Exists(_path_model))

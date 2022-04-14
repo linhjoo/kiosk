@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace kiosk.controllers
@@ -24,18 +25,20 @@ namespace kiosk.controllers
            return str.Split(splitter);
         }
 
-        public bool IsValidMailAddress(string mail)
+        public bool IsValidMailAddress(string email)
         {
-            try
-            {
-                System.Net.Mail.MailAddress mailAddress = new System.Net.Mail.MailAddress(mail);
-
-                return true;
-            }
-            catch
-            {
-                return false;
-            }
+            //try
+            //{
+            //    System.Net.Mail.MailAddress mailAddress = new System.Net.Mail.MailAddress(mail);
+            //
+            //    return true;
+            //}
+            //catch
+            //{
+            //    return false;
+            //}
+            bool valid = Regex.IsMatch(email, @"[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-zA-Z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?\.)+[a-zA-Z0-9](?:[a-zA-Z0-9-]*[a-zA-Z0-9])?");
+            return valid;
         }
     }
 }

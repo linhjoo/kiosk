@@ -36,7 +36,7 @@ namespace kiosk.pages
         private void BtnConfirm_Click(object sender, RoutedEventArgs e)
         {
             controllers.TextHelper textHelper = new controllers.TextHelper();
-            controllers.Encrypt encrypt = new controllers.Encrypt();
+            controllers.Encrypt encrypt = new controllers.Encrypt(); // 암호화 클래스
 
             List<string[]> userInfo = new List<string[]>();
             foreach (string line in System.IO.File.ReadLines(@"C:/HBT_Foot_Scanner/config/account.txt"))
@@ -50,6 +50,7 @@ namespace kiosk.pages
             string name = tb_name.Text;
             string phoneNumber = tb_phonenumber.Text;
 
+            // 유효성 검사
             if (email == "" || password == "" || password2 == "" || name == "" || phoneNumber == "")
             {
                 tb_Error.Text = "입력되지 않은 항목이 있습니다.";
@@ -73,8 +74,8 @@ namespace kiosk.pages
                     return;
                 }
             }
-
-            string encryptedPassword = encrypt.ConvertToSimpleEncoding(password);
+                        
+            string encryptedPassword = encrypt.ConvertToSimpleEncoding(password); // password 암호화
 
             string temp = $"{email}, {encryptedPassword}, {name}, {phoneNumber}\n";
             try

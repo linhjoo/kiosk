@@ -59,7 +59,7 @@ namespace kiosk.pages
             {
                 if (user[0].Equals(email))
                 {
-                    if (encrypt.ConvertToSimpleDecoding(user[1]) == password)
+                    if (encrypt.ConvertToSimpleDecoding(user[1]) == password) // 암호화 된 Password Data Decoding후 검증 
                     {
                         App.loginStatus = true;
                         App.userName = user[2];
