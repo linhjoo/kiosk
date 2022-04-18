@@ -45,9 +45,23 @@ namespace kiosk.pages
         private void Init3DViewer()
         {
             ModelImporter importer1 = new ModelImporter();
-            ModelImporter importer2 = new ModelImporter();
+
             System.Windows.Media.Media3D.Model3DGroup m3DGroup1 = importer1.Load(@"C:\HBT_Foot_Scanner\Result\L_foot_mesh.ply");
             System.Windows.Media.Media3D.Model3DGroup m3DGroup2 = importer1.Load(@"C:\HBT_Foot_Scanner\Result\R_foot_mesh.ply");
+
+            System.Windows.Media.Media3D.Material mat = MaterialHelper.CreateMaterial(
+            new SolidColorBrush(Color.FromRgb(238, 230, 196)));
+
+            foreach (System.Windows.Media.Media3D.GeometryModel3D geometryModel in m3DGroup1.Children)
+            {
+                geometryModel.Material = mat;
+                geometryModel.BackMaterial = mat;
+            }
+            foreach (System.Windows.Media.Media3D.GeometryModel3D geometryModel in m3DGroup2.Children)
+            {
+                geometryModel.Material = mat;
+                geometryModel.BackMaterial = mat;
+            }
 
             model1.Content = m3DGroup1;
             model2.Content = m3DGroup2;
@@ -130,15 +144,26 @@ namespace kiosk.pages
             IniFile ini = new IniFile();
             ini.Load(@"C:\HBT_Foot_Scanner\Result\measurements.ini");
             
-            double footLengthL = double.Parse(ini["FOOT_SIZE"]["L_foot length"].ToString().Replace(" mm", ""));
-            double footWidthL = double.Parse(ini["FOOT_SIZE"]["L_foot width"].ToString().Replace(" mm", ""));
-            double footLengthR = double.Parse(ini["FOOT_SIZE"]["R_foot length"].ToString().Replace(" mm", ""));
-            double footWidthR = double.Parse(ini["FOOT_SIZE"]["R_foot width"].ToString().Replace(" mm", ""));
+            L_foot_length.Text = string.Format("{0:0.0}mm", double.Parse(ini["FOOT_SIZE"]["L_foot length"].ToString().Replace(" mm", "")));
+            R_foot_length.Text = string.Format("{0:0.0}mm", double.Parse(ini["FOOT_SIZE"]["R_foot length"].ToString().Replace(" mm", "")));
 
-            FootLengthL.Text = string.Format("{0:0.0}mm", footLengthL);
-            FootWidthL.Text = string.Format("{0:0.0}mm", footWidthL);
-            FootLengthR.Text = string.Format("{0:0.0}mm", footLengthR);
-            FootWidthR.Text = string.Format("{0:0.0}mm", footWidthR);
+            L_foot_width.Text = string.Format("{0:0.0}mm", double.Parse(ini["FOOT_SIZE"]["L_foot width"].ToString().Replace(" mm", "")));
+            R_foot_width.Text = string.Format("{0:0.0}mm", double.Parse(ini["FOOT_SIZE"]["R_foot width"].ToString().Replace(" mm", "")));
+
+            L_foot_waist_Girth.Text = string.Format("{0:0.0}mm", double.Parse(ini["FOOT_SIZE"]["L_foot waist Girth"].ToString().Replace(" mm", "")));
+            R_foot_waist_Girth.Text = string.Format("{0:0.0}mm", double.Parse(ini["FOOT_SIZE"]["R_foot waist Girth"].ToString().Replace(" mm", "")));
+            
+            L_foot_waist_height.Text = string.Format("{0:0.0}mm", double.Parse(ini["FOOT_SIZE"]["L_foot waist height"].ToString().Replace(" mm", "")));
+            R_foot_waist_height.Text = string.Format("{0:0.0}mm", double.Parse(ini["FOOT_SIZE"]["R_foot waist height"].ToString().Replace(" mm", "")));
+            
+            L_foot_heel_height.Text = string.Format("{0:0.0}mm", double.Parse(ini["FOOT_SIZE"]["L_foot heel height"].ToString().Replace(" mm", "")));
+            R_foot_heel_height.Text = string.Format("{0:0.0}mm", double.Parse(ini["FOOT_SIZE"]["R_foot heel height"].ToString().Replace(" mm", "")));
+            
+            L_foot_center_to_toe_length.Text = string.Format("{0:0.0}mm", double.Parse(ini["FOOT_SIZE"]["L_foot center to toe length"].ToString().Replace(" mm", "")));
+            R_foot_center_to_toe_length.Text = string.Format("{0:0.0}mm", double.Parse(ini["FOOT_SIZE"]["R_foot center to toe length"].ToString().Replace(" mm", "")));
+            
+            L_foot_center_to_heel_length.Text = string.Format("{0:0.0}mm", double.Parse(ini["FOOT_SIZE"]["L_foot center to heel length"].ToString().Replace(" mm", "")));
+            R_foot_center_to_heel_length.Text = string.Format("{0:0.0}mm", double.Parse(ini["FOOT_SIZE"]["R_foot center to heel length"].ToString().Replace(" mm", "")));
         }
 
         private void View_Click(object sender, RoutedEventArgs e)

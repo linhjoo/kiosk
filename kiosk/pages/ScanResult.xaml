@@ -108,8 +108,8 @@
             <Grid Grid.Row="1" Grid.Column="1">
                 <Grid>
                     <Grid.RowDefinitions>
-                        <RowDefinition Height="6*"></RowDefinition>
-                        <RowDefinition Height="4*"></RowDefinition>
+                        <RowDefinition Height="6.5*"></RowDefinition>
+                        <RowDefinition Height="3.5*"></RowDefinition>
                     </Grid.RowDefinitions>
                     <!-- 수치 영역 -->
                     <Grid Grid.Row="0" Visibility="Visible">
@@ -122,13 +122,15 @@
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
                                 <RowDefinition></RowDefinition>
+                                <RowDefinition></RowDefinition>
                             </Grid.RowDefinitions>
                             <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="1.2*"></ColumnDefinition>
+                                <ColumnDefinition Width="1.4*"></ColumnDefinition>
                                 <ColumnDefinition Width="1*"></ColumnDefinition>
                                 <ColumnDefinition Width="1*"></ColumnDefinition>
                             </Grid.ColumnDefinitions>
 
+                            <!-- 상단 -->
                             <Grid Grid.Row="0" Grid.Column="1" Margin="3"
                                     Background="#A0c79f4a">
                                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
@@ -143,133 +145,155 @@
                            Foreground="#dadada" Text="오른발" />
                             </Grid>
 
+                            <!-- 발 길이 -->
                             <Grid Grid.Row="1" Grid.Column="0" Margin="3"
                                     Background="#A0c79f4a">
                                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
                            Foreground="#dadada" Text="발 길이" />
                             </Grid>
-
-                            <Grid Grid.Row="2" Grid.Column="0" Margin="3"
-                                    Background="#A0c79f4a">
-                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
-                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
-                           Foreground="#dadada" Text="발 너비" />
-                            </Grid>
-
-
                             <Grid Grid.Row="1" Grid.Column="1" Margin="3"
                                     Background="#20c79f4a">
-                                <TextBlock x:Name="FootLengthL" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                <TextBlock x:Name="L_foot_length" VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
                            Foreground="#dadada" Text="-" />
                             </Grid>
 
                             <Grid Grid.Row="1" Grid.Column="2" Margin="3"
                                     Background="#20c79f4a">
-                                <TextBlock x:Name="FootLengthR" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                <TextBlock x:Name="R_foot_length" VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
                            Foreground="#dadada" Text="-" />
                             </Grid>
 
+                            <!-- 발 너비 -->
+                            <Grid Grid.Row="2" Grid.Column="0" Margin="3"
+                                    Background="#A0c79f4a">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="발 너비" />
+                            </Grid>
                             <Grid Grid.Row="2" Grid.Column="1" Margin="3"
                                     Background="#20c79f4a">
-                                <TextBlock x:Name="FootWidthL" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                <TextBlock x:Name="L_foot_width" VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
                            Foreground="#dadada" Text="-" />
                             </Grid>
 
                             <Grid Grid.Row="2" Grid.Column="2" Margin="3"
                                     Background="#20c79f4a">
-                                <TextBlock x:Name="FootWidthR" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                <TextBlock x:Name="R_foot_width" VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
                            Foreground="#dadada" Text="-" />
                             </Grid>
 
-                            <!-- 발 상측길이-->
+                            <!-- 발등 둘레-->
                             <Grid Grid.Row="3" Grid.Column="0" Margin="3"
                                     Background="#A0c79f4a">
                                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
-                           Foreground="#dadada" Text="발 상측길이" />
+                           Foreground="#dadada" Text="발등 둘레" />
                             </Grid>
 
                             <Grid Grid.Row="3" Grid.Column="1" Margin="3"
                                     Background="#20c79f4a">
-                                <TextBlock x:Name="FootUpperLengthL" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                <TextBlock x:Name="L_foot_waist_Girth" VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
                            Foreground="#dadada" Text="-" />
                             </Grid>
 
                             <Grid Grid.Row="3" Grid.Column="2" Margin="3"
                                     Background="#20c79f4a">
-                                <TextBlock x:Name="FootUpperLengthR" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                <TextBlock x:Name="R_foot_waist_Girth" VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
                            Foreground="#dadada" Text="-" />
                             </Grid>
 
-                            <!-- 발 하측길이-->
+                            <!-- 발등 높이-->
                             <Grid Grid.Row="4" Grid.Column="0" Margin="3"
                                     Background="#A0c79f4a">
                                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
-                           Foreground="#dadada" Text="발 하측길이" />
+                           Foreground="#dadada" Text="발등 높이" />
                             </Grid>
 
                             <Grid Grid.Row="4" Grid.Column="1" Margin="3"
                                     Background="#20c79f4a">
-                                <TextBlock x:Name="FootUnderLengthL" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                <TextBlock x:Name="L_foot_waist_height" VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
                            Foreground="#dadada" Text="-" />
                             </Grid>
 
                             <Grid Grid.Row="4" Grid.Column="2" Margin="3"
                                     Background="#20c79f4a">
-                                <TextBlock x:Name="FootUnderLengthR" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                <TextBlock x:Name="R_foot_waist_height" VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
                            Foreground="#dadada" Text="-" />
                             </Grid>
 
-                            <!-- 내측 볼너비 -->
+                            <!-- 발뒷꿈치 높이 -->
                             <Grid Grid.Row="5" Grid.Column="0" Margin="3"
                                     Background="#A0c79f4a">
                                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
-                           Foreground="#dadada" Text="내측 볼너비" />
+                           Foreground="#dadada" Text="발뒷꿈치 높이" />
                             </Grid>
 
                             <Grid Grid.Row="5" Grid.Column="1" Margin="3"
                                     Background="#20c79f4a">
-                                <TextBlock x:Name="FootInnerWidthL" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                <TextBlock x:Name="L_foot_heel_height" VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
                            Foreground="#dadada" Text="-" />
                             </Grid>
 
                             <Grid Grid.Row="5" Grid.Column="2" Margin="3"
                                     Background="#20c79f4a">
-                                <TextBlock x:Name="FootInnerWidthR" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                <TextBlock x:Name="R_foot_heel_height" VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
                            Foreground="#dadada" Text="-" />
                             </Grid>
 
-                            <!-- 내측 볼너비 -->
+                            <!-- 발중심점상측길이 -->
                             <Grid Grid.Row="6" Grid.Column="0" Margin="3"
                                     Background="#A0c79f4a">
                                 <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
-                           Foreground="#dadada" Text="외측 볼너비" />
+                           Foreground="#dadada" Text="발중심점상측길이" />
                             </Grid>
 
                             <Grid Grid.Row="6" Grid.Column="1" Margin="3"
                                     Background="#20c79f4a">
-                                <TextBlock x:Name="FootOuterWidthL" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                <TextBlock x:Name="L_foot_center_to_toe_length" VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
                            Foreground="#dadada" Text="-" />
                             </Grid>
 
                             <Grid Grid.Row="6" Grid.Column="2" Margin="3"
                                     Background="#20c79f4a">
-                                <TextBlock x:Name="FootOuterWidthR" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                                <TextBlock x:Name="R_foot_center_to_toe_length" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+
+                            <!-- 발중심점하측길이 -->
+                            <Grid Grid.Row="7" Grid.Column="0" Margin="3"
+                                    Background="#A0c79f4a">
+                                <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="발중심점하측길이" />
+                            </Grid>
+
+                            <Grid Grid.Row="7" Grid.Column="1" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="L_foot_center_to_heel_length" VerticalAlignment="Center" HorizontalAlignment="Center" 
+                           FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
+                           Foreground="#dadada" Text="-" />
+                            </Grid>
+
+                            <Grid Grid.Row="7" Grid.Column="2" Margin="3"
+                                    Background="#20c79f4a">
+                                <TextBlock x:Name="R_foot_center_to_heel_length" VerticalAlignment="Center" HorizontalAlignment="Center" 
                            FontFamily="NanumGothic" FontSize="25" FontWeight="Bold" 
                            Foreground="#dadada" Text="-" />
                             </Grid>
@@ -278,21 +302,21 @@
                     </Grid>
                     <!-- 버튼 영역-->
                     <Grid Grid.Row="1">
-                        <StackPanel Margin="80 20">
-                            <Button x:Name="View" Foreground="#9e6337" Width="350" Height="75" FontSize="32" FontFamily="NanumGothic" FontWeight="SemiBold" Margin="10" Click="View_Click">
+                        <StackPanel Margin=" 0">
+                            <Button x:Name="View" Foreground="#9e6337" Width="350" Height="75" FontSize="32" FontFamily="NanumGothic" FontWeight="SemiBold" Margin="5" Click="View_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="../resources/images/ico_ar.png" Width="50" Height="50" Margin="20 0" VerticalAlignment="Center"/>
                                     <TextBlock Margin="10,0,0,0"  VerticalAlignment="Center"><Run Text="3D/2D 전환" FontSize="30"/></TextBlock>
                                 </StackPanel>
                             </Button>
 
-                            <Button x:Name="Confirm" Foreground="#9e6337" Width="350" Height="75" FontSize="32" FontFamily="NanumGothic" FontWeight="SemiBold" Margin="10" Click="Confirm_Click">
+                            <Button x:Name="Confirm" Foreground="#9e6337" Width="350" Height="75" FontSize="32" FontFamily="NanumGothic" FontWeight="SemiBold" Margin="5" Click="Confirm_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="../resources/images/ico_shoes.png" Width="50" Height="50" Margin="20 0" VerticalAlignment="Center"/>
                                     <TextBlock Margin="10,0,0,0"  VerticalAlignment="Center"><Run Text="확인" FontSize="30"/></TextBlock>
                                 </StackPanel>
                             </Button>
-                            <Button x:Name="Rescan" Foreground="#9e6337" Width="350" Height="75" FontSize="32" FontFamily="NanumGothic" FontWeight="SemiBold" Margin="10" Click="Rescan_Click">
+                            <Button x:Name="Rescan" Foreground="#9e6337" Width="350" Height="75" FontSize="32" FontFamily="NanumGothic" FontWeight="SemiBold" Margin="5" Click="Rescan_Click">
                                 <StackPanel Orientation="Horizontal">
                                     <Image Source="../resources/images/ico_3d.png" Width="35" Height="35" Margin="28 0"/>
                                     <TextBlock Margin="10,0,0,0"  VerticalAlignment="Center"><Run Text="재 스캔" FontSize="30"/></TextBlock>

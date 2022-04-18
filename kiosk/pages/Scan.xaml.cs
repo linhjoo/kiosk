@@ -31,10 +31,13 @@ namespace kiosk.pages
     {
         private BackgroundWorker worker;
         private readonly VideoCapture capture;
+        bool useCamera;
 
         public Scan()
         {
             InitializeComponent();
+
+            useCamera = false;
 
             capture = new VideoCapture();
 
@@ -47,23 +50,32 @@ namespace kiosk.pages
 
         private void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            // 페이지 Load 시 카메라 캡쳐 비동기 실행
-            capture.Open(0, VideoCaptureAPIs.ANY);
-            if (!capture.IsOpened())
+            if (useCamera == true)
             {
-                return;
+                // 페이지 Load 시 카메라 캡쳐 비동기 실행
+                capture.Open(0, VideoCaptureAPIs.ANY);
+                if (!capture.IsOpened())
+                {
+                    return;
+                }
+                else
+                {
+                    RunTask();
+                }
             }
-            RunTask();
         }
 
         private void Page_Unloaded(object sender, RoutedEventArgs e)
         {
-            // 페이지 Unload 시 카메라 캡쳐 종료
             worker.CancelAsync();
 
-            if (!capture.IsDisposed)
+            // 페이지 Unload 시 카메라 캡쳐 종료
+            if (useCamera == true)
             {
-                capture.Dispose();
+                if (!capture.IsDisposed)
+                {
+                    capture.Dispose();
+                }
             }
         }
 
@@ -246,8 +258,12 @@ namespace kiosk.pages
         // 외부 프로세스 시작 (exe, vbs .. UI 실행파일과 같은 경로 내에 있어야 함)
         private void ProcessStart(string fileName)
         {
-            ProcessStartInfo startInfo = new ProcessStartInfo(fileName);
-            Process.Start(startInfo);
+            try
+            {
+                ProcessStartInfo startInfo = new ProcessStartInfo(fileName);
+                Process.Start(startInfo);
+            }
+            catch { }
         }
 
         private void ProcessKill(string fileName)

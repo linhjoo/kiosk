@@ -50,9 +50,24 @@ namespace kiosk.pages
             else if (footLengthR > 290) footLengthR = 290;
 
             ModelImporter importer1 = new ModelImporter();
-            ModelImporter importer2 = new ModelImporter();
+
             System.Windows.Media.Media3D.Model3DGroup m3DGroup1 = importer1.Load($"C:/HBT_Foot_Scanner/Data/insole_sample/{footLengthL}_L.ply");
             System.Windows.Media.Media3D.Model3DGroup m3DGroup2 = importer1.Load($"C:/HBT_Foot_Scanner/Data/insole_sample/{footLengthR}_R.ply");
+
+            System.Windows.Media.Media3D.Material mat1 = MaterialHelper.CreateMaterial(
+            new SolidColorBrush(Color.FromRgb(194, 197, 204)));
+            
+            foreach (System.Windows.Media.Media3D.GeometryModel3D geometryModel in m3DGroup1.Children)
+            {
+                geometryModel.Material = mat1;
+                geometryModel.BackMaterial = mat1;
+            }
+            foreach (System.Windows.Media.Media3D.GeometryModel3D geometryModel in m3DGroup2.Children)
+            {
+                geometryModel.Material = mat1;
+                geometryModel.BackMaterial = mat1;
+            }
+
             model1.Content = m3DGroup1;
             model2.Content = m3DGroup2;
         }

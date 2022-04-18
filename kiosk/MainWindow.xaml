@@ -9,6 +9,6 @@
         WindowState="Maximized" ResizeMode="NoResize" WindowStyle="None" Closed="Window_Closed">
     <Grid>
         <!-- 최초 표시 페이지 -->
-        <Frame NavigationUIVisibility="Hidden" Source="/pages/Main.xaml"/> 
+        <Frame NavigationUIVisibility="Hidden" Source="/pages/ScanResult.xaml"/> 
     </Grid>
 </Window>
